@@ -15,10 +15,8 @@ fn generating(
   previous_node: Option(Node),
 ) -> Node {
   let value = int.random(100)
-  case current_length > max_length {
-    True -> {
-      Node(value, previous_node)
-    }
+  case current_length >= max_length {
+    True -> option.unwrap(previous_node, Node(0, None))
     False -> {
       case previous_node {
         None -> {
