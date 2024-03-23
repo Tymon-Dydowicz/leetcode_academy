@@ -36,15 +36,29 @@ fn create_reorded_linked_list(
       )
     }
     Some(previous_node), False -> {
-      let first_node = Node(normal.value, Some(previous_node))
-      let second_node = Node(reversed.value, Some(first_node))
-      create_reorded_linked_list(
-        option.unwrap(normal.next, Node(0, None)),
-        option.unwrap(reversed.next, Node(0, None)),
-        max_length,
-        current_length + 2,
-        Some(second_node),
-      )
+      case max_length - current_length {
+        1 -> {
+          let first_node = Node(normal.value, Some(previous_node))
+          create_reorded_linked_list(
+            option.unwrap(normal.next, Node(0, None)),
+            option.unwrap(reversed.next, Node(0, None)),
+            max_length,
+            current_length + 1,
+            Some(first_node),
+          )
+        }
+        _ -> {
+          let first_node = Node(normal.value, Some(previous_node))
+          let second_node = Node(reversed.value, Some(first_node))
+          create_reorded_linked_list(
+            option.unwrap(normal.next, Node(0, None)),
+            option.unwrap(reversed.next, Node(0, None)),
+            max_length,
+            current_length + 2,
+            Some(second_node),
+          )
+        }
+      }
     }
   }
 }
