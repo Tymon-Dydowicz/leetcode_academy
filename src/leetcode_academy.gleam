@@ -3,6 +3,7 @@ import gleam/io
 import reverse_linked_list
 import palindrome_linked_list
 import reorder_linked_list
+import duplicate_int
 
 pub fn main() {
   case argv.load().arguments {
@@ -11,12 +12,13 @@ pub fn main() {
         "206" -> reverse_linked_list.main()
         "234" -> palindrome_linked_list.main()
         "143" -> reorder_linked_list.main()
+        "287" -> duplicate_int.main()
         _ ->
           io.println(
             "Task #"
             <> number
             <> " Was not yet solved \n"
-            <> "Currently implemented tasks are: 206, 234, 143",
+            <> "Currently implemented tasks are: 206, 234, 143, 287",
           )
       }
     _ ->

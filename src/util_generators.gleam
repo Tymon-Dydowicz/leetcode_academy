@@ -1,6 +1,7 @@
 import gleam/int
 import gleam/result
 import gleam/io
+import gleam/list
 import gleam/option.{type Option, None, Some}
 
 /// Simple Node class containing it's value and pointer to the next Node
@@ -103,4 +104,18 @@ pub fn generate_random_palindrome_linked_list(length: Int) -> Node {
     Ok(0) -> generate_random_palindrome_linked_list_impl(length, 0, [], None)
     _ -> panic
   }
+}
+
+fn generate_random_array_impl(length: Int, accumulator: List(Int)) -> List(Int) {
+  case list.length(accumulator) >= length {
+    True -> accumulator
+    False -> {
+      let accumulator = [int.random(length - 2) + 1, ..accumulator]
+      generate_random_array_impl(length, accumulator)
+    }
+  }
+}
+
+pub fn generate_random_array(length: Int) -> List(Int) {
+  generate_random_array_impl(length, [])
 }
