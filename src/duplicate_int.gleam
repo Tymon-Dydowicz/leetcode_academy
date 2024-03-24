@@ -21,10 +21,20 @@ pub fn find_duplicate(list: List(Int)) -> Int {
   find_duplicate_impl1(list, [])
 }
 
+fn run_test(times: Int, counter: Int) -> Nil {
+  case counter {
+    counter if counter < times -> {
+      util_generators.generate_random_array({ counter + 1 } * 10)
+      |> io.debug()
+      |> find_duplicate()
+      |> io.debug()
+      run_test(times, counter + 1)
+    }
+    _ -> io.println("Finished")
+  }
+}
+
 pub fn main() {
-  let list = util_generators.generate_random_array(10)
-  io.debug(list)
-  find_duplicate(list)
-  |> io.debug()
+  run_test(5, 0)
   io.println("Done")
 }
